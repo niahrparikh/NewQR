@@ -3,6 +3,9 @@ import { prisma } from '@/lib/db';
 import { deleteFile } from '@/lib/supabase';
 import { isAdminAuthenticated } from '@/lib/auth';
 
+// Disable static generation for this route
+export const dynamic = 'force-dynamic';
+
 export async function DELETE(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
