@@ -4,6 +4,9 @@ import { uploadFile } from '@/lib/supabase';
 import { generateQRCode, getPassPublicUrl } from '@/lib/qrcode';
 import { isAdminAuthenticated } from '@/lib/auth';
 
+// Disable static generation for this route
+export const dynamic = 'force-dynamic';
+
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
 
 export async function POST(request: NextRequest) {
