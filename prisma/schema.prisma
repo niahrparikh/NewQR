@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pass {
+  id            String   @id @default(uuid()) @db.Uuid
+  fileUrl       String   // URL to the stored PDF file
+  fileName      String   // Original file name
+  fileSize      Int      // File size in bytes
+  
+  passNumber    String?  // Optional: Pass/Certificate number
+  vehicleNumber String?  // Optional: Vehicle number
+  date          DateTime? // Optional: Date associated with pass
+  notes         String?  // Optional: Additional notes
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([createdAt])
+}
